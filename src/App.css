@@ -1,0 +1,930 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+
+h3,
+h2 {
+  font-family: "Raleway", sans-serif;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+  /* height: 100%; */
+  overflow: hidden;
+}
+
+.navContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Container .activeCategoryText {
+  display: flex;
+  align-self: start;
+  margin: 5rem 7rem;
+  font-size: 42px;
+  color: #1d1f22;
+}
+
+.miniCartBg {
+  background-color: #2b2b2b36;
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  display: none;
+  /* left: 0;
+  right: 0;
+  top: 80px;
+  bottom: 0; */
+}
+
+.miniCartBg.active {
+  display: block;
+}
+
+.miniCartBg .miniCart {
+  width: 325px;
+  height: 680px;
+  margin-right: 7rem;
+  position: absolute;
+  right: 0px;
+  background-color: white;
+  overflow: scroll;
+}
+
+.Products {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  /* height: fit-content; */
+  margin-bottom: 3rem;
+}
+
+.Products .Product {
+  margin: 20px;
+  padding: 16px;
+  width: 30%;
+  height: 444px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  position: relative;
+}
+
+.Products .Product .addCart {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 110px;
+  bottom: 90px;
+}
+
+.Products .Product .addCart i {
+  visibility: hidden;
+  background-color: #5ece7b;
+  padding: 20px;
+  border-radius: 100%;
+  color: white;
+  z-index: 1;
+}
+
+.Products .Product .addCart i:hover {
+  background-color: #4aa161;
+  transition: all 0.3s;
+}
+
+.Products .Product .productPhoto {
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Products .Product .outOfStockImg {
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.Products .Product .outOfStockImg img {
+  object-fit: scale-down;
+  height: 300px;
+  width: 300px;
+}
+
+.Products .Product .outOfStockImg .outOfStockTxt {
+  position: absolute;
+}
+
+.Products .Product .productPhoto img {
+  object-fit: scale-down;
+  height: 300px;
+  width: 300px;
+}
+
+.Products .Product .productInfo {
+  margin: 0px 10px;
+}
+
+.Products .Product:hover {
+  box-shadow: 0 10px 30px 0 lightgrey;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.Products .Product:hover .addCart i {
+  visibility: visible;
+}
+
+.Products .Product img {
+  max-width: 300px;
+}
+
+.Products .Product h2 {
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.Products .Product h3 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.navContainer .container {
+  display: flex;
+  width: 90%;
+  height: 80px;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  background-color: white;
+}
+
+.container .HomeIcon {
+  background-image: url("/src/assets/icon.jpg");
+  width: 40px;
+  height: 40px;
+}
+
+.container .HomeIcon:hover {
+  cursor: pointer;
+}
+
+.container .Categories {
+  width: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container .Categories a {
+  text-decoration: none;
+  padding: 20px 20px;
+  color: #1d1f22;
+  border-bottom: white 3px solid;
+}
+
+.container .widthFix {
+  width: 10rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container .Controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 5rem;
+}
+
+.container .Controls .cartIcon {
+  position: relative;
+}
+
+.container .Controls .cartIcon button {
+  border: none;
+  background-color: transparent;
+}
+
+.container .Controls .cartIcon .badge {
+  position: absolute;
+  top: -12px;
+  right: -15px;
+  background-color: #1d1f22;
+  color: white;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.container .Controls .cartIcon i {
+  font-size: 15px;
+}
+
+.container .Controls .cartIcon i:hover {
+  cursor: pointer;
+}
+
+.container .Controls .currency {
+  position: absolute;
+  top: 30px;
+  right: 100px;
+  width: 100px;
+  margin: 0;
+}
+
+.container .Controls .currency i {
+  font-size: 10px;
+}
+
+.container .Controls .currency .options {
+  border: none;
+  margin-top: 10px;
+  background-color: white;
+  width: 100px;
+  box-shadow: 0 5px 20px 0 #eeeeee;
+  display: none;
+}
+
+.container .Controls .currency .currentOpt {
+  border: none;
+  outline: none;
+  width: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.container .Controls .currency .currentOpt::placeholder {
+  color: black;
+  font-size: 18px;
+}
+
+.container .Controls .currency .option {
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.container .Controls .currency.active .options {
+  display: block;
+}
+
+.container .Controls .currency.active i {
+  transform: rotate(-180deg);
+}
+
+.container .Controls .currency .option .flexStart {
+  display: flex;
+  justify-content: flex-start;
+  width: 60px;
+}
+
+.container .Controls .currency .option:hover {
+  transition: all 0.3s;
+  background-color: #eeeeee;
+}
+
+.container .Controls .currency:hover {
+  cursor: pointer;
+}
+
+.container .Categories a:focus {
+  color: #5ece7b;
+  transition: all 0.3s;
+  border-bottom: #5ece7b 3px solid;
+}
+
+.container .Categories a:hover {
+  color: #5ece7b;
+  transition: all 0.3s;
+  border-bottom: #5ece7b 3px solid;
+}
+
+.Container .ProductPage {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 50px 0px;
+}
+
+.Container .ProductPage .photoDisplay .navigation {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+}
+
+.Container .ProductPage .photoDisplay .arrow {
+  padding: 10px;
+  z-index: 1;
+}
+
+.Container .ProductPage .photoDisplay .arrow:hover {
+  cursor: pointer;
+}
+
+.Container .ProductPage .productInfo .prodPageBrand {
+  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.Container .ProductPage .productInfo .prodPageName {
+  font-weight: 400;
+  margin-bottom: 25px;
+  font-size: 30px;
+}
+
+.Container .ProductPage .productInfo .prodPagePrice {
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  font-family: "Roboto Condensed";
+}
+
+.Container .ProductPage .productInfo .prodPageAmount {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.Container .ProductPage .productInfo .prodPageBtn {
+  font-weight: 600;
+  font-size: 16px;
+  width: 100%;
+}
+
+.Container .ProductPage .productInfo .sizes {
+  display: flex;
+  width: 16rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.Container .ProductPage .productInfo .sizeBox {
+  border: #1d1f22 1px solid;
+  width: 60px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-family: "Source Sans Pro";
+}
+
+.Container .ProductPage .productInfo .colorBox {
+  height: 36px;
+  width: 36px;
+}
+
+.Container .ProductPage .productInfo .colorBox:nth-child(1) {
+  background-color: #d3d2d5;
+}
+
+.Container .ProductPage .productInfo .colorBox:nth-child(2) {
+  background-color: #2b2b2b;
+}
+
+.Container .ProductPage .productInfo .colorBox:nth-child(3) {
+  background-color: #0f644f;
+}
+
+.Container .ProductPage .productInfo .colorBox:hover {
+  transition: all 0.3s;
+  border: #5ece7b 3px solid;
+  cursor: pointer;
+}
+
+.Container .ProductPage .productInfo .colors {
+  display: flex;
+  width: 7.5rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.Container .ProductPage .productInfo .sizeBox:hover {
+  background-color: #1d1f22;
+  color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.ProductPage .productInfo #textBox {
+  width: 300px;
+}
+
+.ProductPage .productInfo #textBox h1 {
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+.ProductPage .productInfo button {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 20px;
+  background-color: lightgreen;
+  color: white;
+  font-weight: 700;
+  border: none;
+}
+
+.ProductPage .productInfo button:hover {
+  cursor: pointer;
+  background-color: #4aa161;
+  transition: all 0.3s;
+}
+
+.Container .ProductPage .photoDisplay {
+  position: relative;
+  height: 600px;
+  width: 820px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ProductPage .photoDisplay img {
+  object-fit: scale-down;
+  max-width: 600px;
+  max-height: 600px;
+}
+
+.ProductPage .photoGallery {
+  width: 90px;
+  height: 600px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.ProductPage .photoGallery img {
+  max-width: 90px;
+  margin: 10px 0px;
+}
+
+.ProductPage .photoGallery img:hover {
+  cursor: pointer;
+}
+
+.emptyCart h1 {
+  margin-left: 110px;
+  margin-top: 40px;
+}
+
+.emptyCart .status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+}
+
+.CartProducts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.CartProducts .cartTxt {
+  margin-bottom: 60px;
+}
+
+.CartProducts .cartTxt.cartTxtMinicart {
+  display: none;
+}
+
+.emptyCart .cartTxt.cartTxtMinicart {
+  display: none;
+}
+
+.CartProducts .order {
+  align-self: flex-start;
+  margin-left: 80px;
+  margin-top: 20px;
+  width: 280px;
+}
+
+.CartProducts .minicartControls {
+  display: none;
+}
+
+.CartProducts.CartProductsMinicart .order {
+  margin-left: 0;
+}
+
+.CartProducts.CartProductsMinicart .minicartControls {
+  display: block;
+  width: 90%;
+  margin-top: 20px;
+}
+
+.CartProducts.CartProductsMinicart .minicartControls .total,
+.minicartBtn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.CartProducts.CartProductsMinicart .minicartControls .total h2 {
+  font-size: 16px;
+}
+
+.CartProducts.CartProductsMinicart .minicartControls .minicartBtn button {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 20px 30px;
+  background-color: lightgreen;
+  color: white;
+  font-weight: 700;
+  border: none;
+}
+
+.CartProducts.CartProductsMinicart
+  .minicartControls
+  .minicartBtn
+  button:nth-child(1) {
+  background-color: white;
+  color: #1d1f22;
+  border: #1d1f22 solid 1px;
+}
+
+.CartProducts.CartProductsMinicart
+  .minicartControls
+  .minicartBtn
+  button:nth-child(1):hover {
+  cursor: pointer;
+  background-color: #1d1f22;
+  color: white;
+  transition: all 0.3s;
+}
+
+.CartProducts.CartProductsMinicart .minicartControls .minicartBtn button:hover {
+  cursor: pointer;
+  background-color: #4aa161;
+  transition: all 0.3s;
+}
+
+.CartProducts .minicartMyBag {
+  display: none;
+}
+
+.CartProducts.CartProductsMinicart .minicartMyBag {
+  display: flex;
+  justify-content: flex-start;
+  width: 90%;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.emptyCart .minicartMyBag {
+  display: none;
+}
+
+.emptyCart.emptyCartMinicart .minicartMyBag {
+  display: none;
+}
+
+/* .emptyCart.emptyCartMinicart .minicartMyBag{
+ display: none;
+} */
+
+.CartProducts.CartProductsMinicart .minicartMyBag h2,
+span {
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.emptyCart .minicartMyBag h2,
+span {
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.CartProducts.CartProductsMinicart .order.minicartHide {
+  display: none;
+}
+
+.CartProducts .order span {
+  font-weight: 300;
+  font-size: 24px;
+}
+
+.CartProducts h1 {
+  align-self: flex-start;
+  margin-left: 110px;
+  margin-top: 40px;
+}
+
+.CartProducts .cartProduct {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  border-top: 1px solid lightgray;
+  height: 340px;
+}
+
+.CartProducts .cartProduct.cardProductMinicart {
+  height: 250px;
+  border: none;
+}
+
+.CartProducts .cartProduct:nth-last-child(2) {
+  border-bottom: 1px solid lightgray;
+}
+
+.CartProducts .cartProduct .left {
+  height: 290px;
+}
+
+.CartProducts .cartProduct.cardProductMinicart .left {
+  height: 200px;
+}
+
+.CartProducts
+  .cartProduct.cardProductMinicart
+  .CartProducts
+  .cartProduct
+  .left
+  .prodPagePrice {
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  font-family: "Roboto Condensed";
+}
+
+.CartProducts .cartProduct .left .sizes {
+  display: flex;
+  width: 16rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.CartProducts .cartProduct.cardProductMinicart .left .sizes {
+  display: flex;
+  width: 7rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.CartProducts .cartProduct .left .sizes .sizeBox {
+  border: #1d1f22 1px solid;
+  width: 60px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-family: "Source Sans Pro";
+}
+
+.CartProducts .cartProduct.cardProductMinicart .left .sizes .sizeBox {
+  border: #1d1f22 1px solid;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-family: "Source Sans Pro";
+}
+
+.CartProducts .cartProduct .left .sizes .sizeBox:hover {
+  background-color: #1d1f22;
+  color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.CartProducts .cartProduct .left .colors {
+  display: flex;
+  width: 7.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.CartProducts .cartProduct.cardProductMinicart .left .colors {
+  display: flex;
+  width: 5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.CartProducts .cartProduct .left .colors .colorBox {
+  height: 36px;
+  width: 36px;
+}
+
+.CartProducts .cartProduct.cardProductMinicart .left .colors .colorBox {
+  height: 20px;
+  width: 20px;
+}
+
+.CartProducts .cartProduct .left .colors .colorBox:hover {
+  transition: all 0.3s;
+  border: #5ece7b 3px solid;
+  cursor: pointer;
+}
+
+.CartProducts .cartProduct .left .colors .colorBox:nth-child(1) {
+  background-color: #d3d2d5;
+}
+
+.CartProducts .cartProduct .left .colors .colorBox:nth-child(2) {
+  background-color: #2b2b2b;
+}
+
+.CartProducts .cartProduct .left .colors .colorBox:nth-child(3) {
+  background-color: #0f644f;
+}
+
+.CartProducts .cartProduct .left h2 {
+  margin-bottom: 10px;
+}
+
+.CartProducts .cartProduct.cardProductMinicart .left h2 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.CartProducts .cartProduct .left h2:nth-child(2) {
+  font-weight: 300;
+}
+
+.CartProducts .cartProduct .right {
+  height: 290px;
+  width: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.CartProducts .cartProduct.cardProductMinicart .right {
+  height: 200px;
+  width: 155px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.CartProducts .cartProduct .right .imagePlaceholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+}
+
+.CartProducts .cartProduct.cardProductMinicart .right .imagePlaceholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 200px;
+}
+
+.CartProducts .cartProduct .right .imagePlaceholder img {
+  object-fit: scale-down;
+  width: 200px;
+}
+
+.CartProducts .cartProduct.cardProductMinicart .right .imagePlaceholder img {
+  object-fit: cover;
+  max-width: 120px;
+  height: 100%;
+}
+
+.CartProducts .cartProduct .right .productCount {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.CartProducts .cartProduct.cardProductMinicart .right .productCount {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.CartProducts .cartProduct .right .productCount .amount {
+  text-align: center;
+  font-size: 18px;
+}
+
+.CartProducts .cartProduct .right .productCount .increment {
+  border: #1d1f22 1px solid;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  font-size: 30px;
+}
+
+.CartProducts .cartProduct .right .productCount .decrement {
+  border: #1d1f22 1px solid;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  font-size: 30px;
+}
+
+.CartProducts .cartProduct.cardProductMinicart .right .productCount .increment {
+  border: #1d1f22 1px solid;
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  font-size: 30px;
+}
+
+.CartProducts .cartProduct.cardProductMinicart .right .productCount .decrement {
+  border: #1d1f22 1px solid;
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  font-size: 30px;
+}
+
+.CartProducts .cartProduct .right .productCount .increment:hover {
+  background-color: #1d1f22;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.CartProducts .cartProduct .right .productCount .decrement:hover {
+  background-color: #1d1f22;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.CartProducts .order button {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  width: 100%;
+  padding: 15px 30px;
+  background-color: lightgreen;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  border: none;
+}
+
+.CartProducts .order button:hover {
+  cursor: pointer;
+  background-color: #4aa161;
+  transition: all 0.3s;
+}
