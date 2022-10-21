@@ -8,7 +8,6 @@ export const activeCurrencySlice = createSlice({
     reducers: {
       addActiveCurrency: (state, action) => {
         state.currency = action.payload
-        console.log(current(state))
       }
     }
   })

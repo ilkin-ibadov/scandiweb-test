@@ -1,5 +1,4 @@
 import React from "react";
-import { filterProducts } from "../Products";
 import { useProducts } from "../../hooks/useProducts";
 import { addActiveCategory } from "../../redux/activeCategorySlice";
 import { useDispatch } from "react-redux";
@@ -28,8 +27,6 @@ function Navbar() {
     }
   };
 
-  // according to miniCartState, it will add classes to configure cart component's content to fit in minicart
-
   if (!loading) {
     let categories = [];
     let unique = [];
@@ -38,7 +35,6 @@ function Navbar() {
       unique = [...new Set(categories)];
     });
     let symbol;
-    let label;
 
     return (
       <div className="navContainer">
@@ -53,10 +49,11 @@ function Navbar() {
             >
               all
             </a>
-            {unique.map((category) => {
+            {unique.map((category, index) => {
               return (
                 <a
                   href="#"
+                  key={index}
                   onClick={() => {
                     dispatch(addActiveCategory(category));
                     navigate("/");
@@ -85,12 +82,13 @@ function Navbar() {
                   className="currentOpt"
                   type="text"
                 />
-                <i class="fa-solid fa-chevron-down"></i>
+                <i className="fa-solid fa-chevron-down"></i>
                 <div className="options">
-                  {data.category.products[0].prices.map((price) => {
+                  {data.category.products[0].prices.map((price, index) => {
                     symbol = price.currency.symbol;
                     return (
                       <div
+                        key={index}
                         className="option"
                         onClick={() => {
                           dispatch(addActiveCurrency(price.currency.symbol));
@@ -112,11 +110,9 @@ function Navbar() {
                     } else if (miniCartState === "active") {
                       dispatch(toggleMiniCart(""));
                     }
-
-                    // navigate("/cart");
                   }}
                 >
-                  <i class="fa-solid fa-cart-shopping"></i>
+                  <i className="fa-solid fa-cart-shopping"></i>
                 </button>
                 {cart.length ? <div className="badge">{quantity}</div> : ""}
               </div>

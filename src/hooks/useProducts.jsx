@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { useQuery, gql, from } from "@apollo/client";
 
 const GET_PRODUCTS = gql`
@@ -19,12 +19,22 @@ const GET_PRODUCTS = gql`
         }
         id
         inStock
+        attributes {
+          id
+          name
+          type
+          items {
+            displayValue
+            value
+            id
+          }
+        }
       }
     }
   }
 `;
 
 export const useProducts = () => {
-    const { error, loading, data } = useQuery(GET_PRODUCTS);
-  return {error, loading, data}
-}
+  const { error, loading, data } = useQuery(GET_PRODUCTS);
+  return { error, loading, data };
+};

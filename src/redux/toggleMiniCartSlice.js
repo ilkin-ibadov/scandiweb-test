@@ -8,7 +8,6 @@ export const toggleMiniCartSlice = createSlice({
     reducers: {
       toggleMiniCart: (state, action) => {
         state.class = action.payload
-        console.log(current(state))
       }
     }
   })

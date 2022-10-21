@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {toggleMiniCart} from "../redux/toggleMiniCartSlice";
+import { toggleMiniCart } from "../redux/toggleMiniCartSlice";
 import {
   increaseQuantity,
   decreaseQuantity,
@@ -20,14 +20,9 @@ export default function Cart() {
   let cardProductMinicart = "";
   let minicartMyBag = "";
   let minicartHide = "";
-  let emptyCartMinicart = ""
+  let emptyCartMinicart = "";
 
-  // const arrayUniqueByKey = [
-  //   ...new Map(cart.map((item) => [item.id, item])).values(),
-  // ];
-  // console.log(arrayUniqueByKey);
   let priceNow;
-  console.log(cart);
 
   if (cart.length) {
     const totalPrice = [];
@@ -40,14 +35,14 @@ export default function Cart() {
       CartProductsMinicart = "CartProductsMinicart";
       minicartMyBag = "minicartMyBag";
       minicartHide = "minicartHide";
-      emptyCartMinicart = "emptyCartMinicart"
+      emptyCartMinicart = "emptyCartMinicart";
     } else if (miniCartState === "") {
       cartTxtMinicart = "";
       cardProductMinicart = "";
       CartProductsMinicart = "";
       minicartMyBag = "";
       minicartHide = "";
-      emptyCartMinicart = ""
+      emptyCartMinicart = "";
     }
 
     return (
@@ -60,7 +55,7 @@ export default function Cart() {
           </div>
           {cart.map((product, index) => {
             return (
-              <div className={`cartProduct ${cardProductMinicart}`}>
+              <div key={index} className={`cartProduct ${cardProductMinicart}`}>
                 <div className="left">
                   <h2>{product.brand}</h2>
                   <h2>{product.name}</h2>
@@ -80,19 +75,39 @@ export default function Cart() {
 
                     {amount}
                   </h2>
-                  <h2 className="prodPagePrice">SIZE:</h2>
-                  <div className="sizes">
-                    <div className="sizeBox">XS</div>
-                    <div className="sizeBox">S</div>
-                    <div className="sizeBox">M</div>
-                    <div className="sizeBox">L</div>
-                  </div>
-                  <h2 className="prodPagePrice">COLOR:</h2>
-                  <div className="colors">
-                    <div className="colorBox"></div>
-                    <div className="colorBox"></div>
-                    <div className="colorBox"></div>
-                  </div>
+                  {product.attributes.map((attribute, index) => {
+                    if (
+                      attribute.name !== "Color"
+                    ) {
+                      return (
+                        <div key={index}>
+                          <h2 className="prodPagePrice">{attribute.name}</h2>
+                          <div className="sizes">
+                            {attribute.items.map((item, index) => {
+                              return <div key={index} className="sizeBox">{item.value}</div>;
+                            })}
+                          </div>
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <div key={index}>
+                          <h2 className="prodPagePrice">{attribute.name}</h2>
+                          <div className="colors">
+                            {attribute.items.map((item, index) => {
+                              return (
+                                <div
+                                  key={index}
+                                  style={{ backgroundColor: `${item.value}` }}
+                                  className="colorBox"
+                                ></div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    }
+                  })}
                 </div>
                 <div className="right">
                   <div className="productCount">
@@ -167,19 +182,19 @@ export default function Cart() {
       CartProductsMinicart = "CartProductsMinicart";
       minicartMyBag = "minicartMyBag";
       minicartHide = "minicartHide";
-      emptyCartMinicart = "emptyCartMinicart"
+      emptyCartMinicart = "emptyCartMinicart";
     } else if (miniCartState === "") {
       cartTxtMinicart = "";
       cardProductMinicart = "";
       CartProductsMinicart = "";
       minicartMyBag = "";
       minicartHide = "";
-      emptyCartMinicart = ""
+      emptyCartMinicart = "";
     }
     return (
       <>
         <div className={`emptyCart ${emptyCartMinicart}`}>
-        <div className="minicartMyBag">
+          <div className="minicartMyBag">
             <h2>My Bag,</h2>
             <span>{quantity} Items</span>
           </div>

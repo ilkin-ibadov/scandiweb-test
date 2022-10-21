@@ -8,9 +8,7 @@ export const cartSlice = createSlice({
     reducers: {
       addToCart: (state, action) => {
         const isInCart = state.cartProducts.some(item => item.id === action.payload.id);
-        // state.cartProducts.push(action.payload)
         if (isInCart) {
-          // update existing item in cart
           return {
             ...state,
             cartProducts: state.cartProducts.map(
@@ -24,7 +22,6 @@ export const cartSlice = createSlice({
           };
         }
   
-        // add new item to cart
         return {
           ...state,
           cartProducts: [
